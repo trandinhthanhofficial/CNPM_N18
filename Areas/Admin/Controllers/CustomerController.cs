@@ -48,5 +48,13 @@ namespace Cafe_manager.Areas.Admin.Controllers
             }
 
         }
+        public ActionResult Xoa(int id)
+        {
+            Manager_cafeEntities db = new Manager_cafeEntities();
+            var model = db.Customer.Find(id);
+            db.Customer.Remove(model);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

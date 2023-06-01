@@ -1,12 +1,13 @@
-﻿@model List<Cafe_manager.Models.EF.OrderDetail>
+﻿@model List<Cafe_manager.Models.EF.Order>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    ViewBag.active = 6;
+    ViewBag.active = 7;
 }
+
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
@@ -31,13 +32,10 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>
-                                <th>ID đơn hàng</th>
-                                <th>ID sản phẩm</th>
-                                <th>Sản phẩm</th>
-                                <th>Giá bán</th>
-                                <th>Số lượng</th>
+                                <th>ID</th>
+                                <th>Tên khách hàng</th>
+                                <th>Nhân viên</th>
                                 <th>Tổng tiền</th>
-                                <th>Đơn hàng số</th>
                                 <th>Tính năng</th>
                             </tr>
                         </thead>
@@ -46,15 +44,18 @@
                             {
                                 <tr>
                                     <td>@item.ID</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product.ID)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product.Title)</td>
-                                    <td>@String.Format("{0:#,0}", item.Price)</td>
-                                    <td>@item.Num</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Customer.Fullname)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Staff.Fullname)</td>
                                     <td>@String.Format("{0:#,0}", item.Price_total)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Order.ID)</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                         <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Thanh toán">
+                                            @Html.ActionLink("Thanh toán", "Pay", new { id = item.ID })
+                                            <i class=""></i>
+                                        </button>
                                     </td>
                                 </tr>
                             }
@@ -65,4 +66,3 @@
         </div>
     </div>
 </main>
-

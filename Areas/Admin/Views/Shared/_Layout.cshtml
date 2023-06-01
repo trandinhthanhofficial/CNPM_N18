@@ -81,9 +81,15 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item @Html.Raw(ViewBag.active==6 ? "active": "")" href="~/Admin/OrderDetail/Index">
-                    <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý đơn hàng</span>
-                </a>
+                <ul class="nav nav-treeview">
+                    <a class="app-menu__item @Html.Raw(ViewBag.active==6 ? "active": "")" href="~/Admin/OrderDetail/Index">
+                        <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Chi tiết đơn hàng</span>
+                    </a>
+                    <a class="app-menu__item @Html.Raw(ViewBag.active==7 ? "active": "")" href="~/Admin/Order/Index">
+                        <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý đơn hàng</span>
+                    </a>
+                </ul>
+                    
             </li>
             <li>
                 <a class="app-menu__item" href="#">
@@ -93,17 +99,17 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" href="~/Money/Index">
+                <a class="app-menu__item" href="#">
                     <i class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Bảng kê lương</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" href="~/Revenue/Index">
+                <a class="app-menu__item" href="#">
                     <i class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item" href="~/Calendar/Index">
+                <a class="app-menu__item" href="#">
                     <i class='app-menu__icon bx bx-calendar-check'></i><span class="app-menu__label">Lịch công tác </span>
                 </a>
             </li>

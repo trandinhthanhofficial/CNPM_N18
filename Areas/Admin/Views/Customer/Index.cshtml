@@ -80,8 +80,10 @@
                                     <td>@item.Email</td>
                                     <td>@item.Phone</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                                        <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa">
+                                            @Html.ActionLink("Xóa", "Xoa", new { id = item.ID })
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             }
