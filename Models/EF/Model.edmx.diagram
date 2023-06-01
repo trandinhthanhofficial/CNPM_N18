@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb9dd7a4f1314038b67854a2922a7534" Name="Diagram1">
+        <EntityTypeShape EntityType="Manager_cafeModel.Category" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.Customer" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.Order" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.Staff" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.UseGroup" Width="1.5" PointX="1.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_cafeModel.User" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Manager_cafeModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK_Product_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK__Oder__Customer_i__51300E55" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK__Oder__Staff_id__5224328E" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK__OderDetai__Order__55F4C372" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK__OderDetai__Produ__55009F39" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_cafeModel.FK_Staff_UseGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

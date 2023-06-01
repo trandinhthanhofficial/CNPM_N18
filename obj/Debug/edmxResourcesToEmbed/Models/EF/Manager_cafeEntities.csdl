@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Manager_cafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+    <NavigationProperty Name="Product1" Relationship="Self.FK_Product_Category1" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imager" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="ID_category" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Product_Category1" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrderDetail" Relationship="Manager_cafeModel.FK__OderDetai__Produ__55009F39" FromRole="Product" ToRole="OrderDetail" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category1">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Manager_cafeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category1" Association="Self.FK_Product_Category1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <EntitySet Name="Staff" EntityType="Manager_cafeModel.Staff" />
+    <EntitySet Name="UseGroup" EntityType="Manager_cafeModel.UseGroup" />
+    <AssociationSet Name="FK_Staff_UseGroup" Association="Manager_cafeModel.FK_Staff_UseGroup">
+      <End Role="UseGroup" EntitySet="UseGroup" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <EntitySet Name="Customer" EntityType="Manager_cafeModel.Customer" />
+    <EntitySet Name="Order" EntityType="Manager_cafeModel.Order" />
+    <EntitySet Name="OrderDetail" EntityType="Manager_cafeModel.OrderDetail" />
+    <AssociationSet Name="FK__Oder__Customer_i__51300E55" Association="Manager_cafeModel.FK__Oder__Customer_i__51300E55">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Oder__Staff_id__5224328E" Association="Manager_cafeModel.FK__Oder__Staff_id__5224328E">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OderDetai__Order__55F4C372" Association="Manager_cafeModel.FK__OderDetai__Order__55F4C372">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OderDetai__Produ__55009F39" Association="Manager_cafeModel.FK__OderDetai__Produ__55009F39">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Phonenumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDgroup" Type="Int32" />
+    <Property Name="Imagesaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UseGroup" Relationship="Manager_cafeModel.FK_Staff_UseGroup" FromRole="Staff" ToRole="UseGroup" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="Manager_cafeModel.FK__Oder__Staff_id__5224328E" FromRole="Staff" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="UseGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Staff" Relationship="Manager_cafeModel.FK_Staff_UseGroup" FromRole="UseGroup" ToRole="Staff" />
+  </EntityType>
+  <Association Name="FK_Staff_UseGroup">
+    <End Type="Manager_cafeModel.UseGroup" Role="UseGroup" Multiplicity="0..1" />
+    <End Type="Manager_cafeModel.Staff" Role="Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UseGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="IDgroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Order" Relationship="Manager_cafeModel.FK__Oder__Customer_i__51300E55" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_id" Type="Int32" />
+    <Property Name="Staff_id" Type="Int32" />
+    <Property Name="Price_total" Type="Double" />
+    <NavigationProperty Name="Customer" Relationship="Manager_cafeModel.FK__Oder__Customer_i__51300E55" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="Staff" Relationship="Manager_cafeModel.FK__Oder__Staff_id__5224328E" FromRole="Order" ToRole="Staff" />
+    <NavigationProperty Name="OrderDetail" Relationship="Manager_cafeModel.FK__OderDetai__Order__55F4C372" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_id" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Num" Type="Int32" />
+    <Property Name="Price_total" Type="Double" />
+    <Property Name="Order_id" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Manager_cafeModel.FK__OderDetai__Order__55F4C372" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Manager_cafeModel.FK__OderDetai__Produ__55009F39" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Oder__Customer_i__51300E55">
+    <End Type="Manager_cafeModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Manager_cafeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Oder__Staff_id__5224328E">
+    <End Type="Manager_cafeModel.Staff" Role="Staff" Multiplicity="0..1" />
+    <End Type="Manager_cafeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OderDetai__Order__55F4C372">
+    <End Type="Manager_cafeModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="Manager_cafeModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="Order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OderDetai__Produ__55009F39">
+    <End Type="Manager_cafeModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="Manager_cafeModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="Product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,111 @@
+﻿@model Cafe_manager.Models.EF.Staff
+
+@{
+    ViewBag.Title = "AddStaff";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<body class="app sidebar-mini rtl">
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+
+    <main class="app-content">
+        <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item">Danh sách nhân viên</li>
+                <li class="breadcrumb-item"><a href="#">Thêm mới nhân viên</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="tile">
+                    <h3 class="tile-title">Tạo mới nhân viên</h3>
+                    <div class="tile-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <form class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Họ và tên</label>
+                                    <input name="Fullname" class="form-control" type="text">
+                                    @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Địa chỉ</label>
+                                    <input name="Address" class="form-control" type="text" required>
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Địa chỉ email</label>
+                                    <input name="Email" class="form-control" type="text" required>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group  col-md-4">
+                                    <label class="control-label">Số điện thoại</label>
+                                    <input name="Phonenumber" class="form-control" type="text" required>
+                                    @Html.ValidationMessageFor(model => model.Phonenumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Ngày sinh</label>
+                                    <input name="Birthday" class="form-control" type="date">
+                                    @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Giới tính</label>
+                                    <select name="Gender" class="form-control" required>
+                                        <option>-- Chọn giới tính --</option>
+                                        <option>Nam</option>
+                                        <option>Nữ</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group  col-md-3">
+                                    <label for="exampleSelect1" class="control-label">Chức vụ</label>
+                                    <select name="Position" class="form-control" id="exampleSelect1">
+                                        <option>-- Chọn chức vụ --</option>
+                                        <option>Thu Ngân</option>
+                                        <option>Nhân Viên</option>
+                                        <option>Quản Lý</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Ảnh 3x4 nhân viên</label>
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.Imagesaff, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                                        <a href="#" class="btn btn-primary" onclick="BrowseSever()"><i class="fas fa-cloud-upload-alt"></i>Chọn ảnh</a>
+                                        @Html.ValidationMessageFor(model => model.Imagesaff, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <button class="btn btn-save" type="submit" value="Create">Lưu lại</button>
+                                <a class="btn btn-cancel" href="~/Admin/Staff/Index">Hủy bỏ</a>
+
+
+                            </form>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @section DoanJS{
+        <script>
+            function BrowseSever() {
+                var finder = new CKFinder();
+                finder.selectActionFunction = GanURLHinhAnh;
+                finder.popup();
+            }
+            function GanURLHinhAnh(url) {
+                $("input[name=Image]").val(url);
+            }
+        </script>
+    }
+</body>

@@ -1,0 +1,117 @@
+﻿@model Cafe_manager.Models.EF.Product
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.active = 3;
+}
+<!-- Navbar-->
+<header class="app-header">
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                    aria-label="Hide Sidebar"></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+
+
+        <!-- User Menu-->
+        <li>
+            <a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
+        </li>
+    </ul>
+</header>
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Danh sách sản phẩm</li>
+            <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="tile">
+                <h3 class="tile-title">Tạo mới sản phẩm</h3>
+                <div class="tile-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <form class="row">
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Tên sản phẩm </label>
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Mô tả sản phẩm</label>
+                                    <textarea class="form-control" name="Description" id="inputNoiDung"></textarea>
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label class="control-label">Ảnh sản phẩm</label>
+                                    @Html.EditorFor(model => model.Imager, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                                    <a href="#" class="btn btn-primary" onclick="BrowseSever()"><i class="fas fa-cloud-upload-alt"></i>Chọn ảnh</a>
+                                    @Html.ValidationMessageFor(model => model.Imager, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Giá bán </label>
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Danh mục </label>
+                                    <select name="ID_category" class="form-control">
+                                        <option>-- Chọn danh mục --</option>
+                                        @foreach (var item in new Cafe_manager.Models.EF.Manager_cafeEntities().Category.ToList())
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.ID_category, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Tình trạng </label>
+                                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Đơn vị tính </label>
+                                    @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+                                </div>
+                                <button class="btn btn-save" type="submit" value="Create">Lưu lại</button>
+                                <a class="btn btn-cancel" href="~/Productmanagement/Index">Hủy bỏ</a>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+@section DoanJS{
+    <script>
+        function BrowseSever() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = GanURLHinhAnh;
+            finder.popup();
+        }
+        function GanURLHinhAnh(url) {
+            $("input[name=Imager]").val(url);
+        }
+    </script>
+}
+
+

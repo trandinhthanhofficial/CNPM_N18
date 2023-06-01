@@ -1,0 +1,114 @@
+﻿@model List<Cafe_manager.Models.EF.Staff>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.active = 4;
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách nhân viên</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+
+                    <div class="row element-button">
+                        <div class="col-sm-2">
+
+                            <a class="btn btn-add btn-sm" href="~/Admin/Staff/AddStaff" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo mới nhân viên
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)">
+                                <i class="fas fa-file-upload"></i> Tải từ file
+                            </a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()">
+                                <i class="fas fa-print"></i> In dữ liệu
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép">
+                                <i class="fas fa-copy"></i> Sao chép
+                            </a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)">
+                                <i class="fas fa-file-pdf"></i> Xuất PDF
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)">
+                                <i class="fas fa-trash-alt"></i> Xóa tất cả
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+                           id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th width="150">Họ và tên</th>
+                                <th width="300">Địa chỉ</th>
+                                <th>Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>SĐT</th>
+                                <th>Chức vụ</th>
+                                <th width="100">Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.Fullname</td>
+                                    <td>@item.Address </td>
+                                    <td>@item.Birthday</td>
+                                    <td>@item.Gender</td>
+                                    <td>@item.Phonenumber</td>
+                                    <td>@item.Position</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                                data-target="#ModalUP">
+                                            @Html.ActionLink("Sửa", "CapNhat", new { id = item.ID })
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                onclick="myFunction(this)">
+                                            @Html.ActionLink("Xóa", "Xoa", new { id = item.ID })
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm" type="button" title="Chi Tiết" id="show-emp" data-toggle="modal"
+                                                data-target="@("#DetailStaff-"+item.ID)" data-url="@Url.Action($"Detail/{item.ID}")">
+                                            <i class="fas fa-plus"> Chi Tiết</i>
+                                        </button>
+                                        @Html.Partial("_DetailStaffPartialView", item)
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
