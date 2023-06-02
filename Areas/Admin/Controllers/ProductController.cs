@@ -35,6 +35,11 @@ namespace Cafe_manager.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Thiếu mô tả sản phẩm");
                 return View(model);
             }
+            if (model.Price < 0)
+            {
+                ModelState.AddModelError("", "Giá bán không hợp lệ");
+                return View(model);
+            }
             Manager_cafeEntities db = new Manager_cafeEntities();
             try
             {
@@ -67,6 +72,11 @@ namespace Cafe_manager.Areas.Admin.Controllers
             if (string.IsNullOrEmpty(model.Description) == true)
             {
                 ModelState.AddModelError("", "Thiếu nội dung sản phẩm");
+                return View(model);
+            }
+            if (model.Price < 0)
+            {
+                ModelState.AddModelError("", "Giá bán không hợp lệ");
                 return View(model);
             }
             Manager_cafeEntities db = new Manager_cafeEntities();

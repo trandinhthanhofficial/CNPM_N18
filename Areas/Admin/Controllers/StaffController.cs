@@ -30,6 +30,11 @@ namespace Cafe_manager.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Thiếu tên nhân viên");
                 return View(model);
             }
+            if (string.IsNullOrEmpty(model.Address) == true)
+            {
+                ModelState.AddModelError("", "Vui lòng nhập địa chỉ");
+                return View(model);
+            }
             if (string.IsNullOrEmpty(model.Phonenumber) == true)
             {
                 ModelState.AddModelError("", "Thiếu số điện thoại");
@@ -62,6 +67,11 @@ namespace Cafe_manager.Areas.Admin.Controllers
             if (string.IsNullOrEmpty(model.Fullname) == true)
             {
                 ModelState.AddModelError("", "Thiếu tên nhân viên");
+                return View(model);
+            }
+            if (string.IsNullOrEmpty(model.Address) == true)
+            {
+                ModelState.AddModelError("", "Vui lòng nhập địa chỉ");
                 return View(model);
             }
             if (string.IsNullOrEmpty(model.Phonenumber) == true)
